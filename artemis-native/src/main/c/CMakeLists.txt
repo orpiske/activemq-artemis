@@ -34,7 +34,7 @@ endif()
 ADD_DEFINITIONS("-O3 -Wall")
 #ADD_DEFINITIONS("-fdump-tree-all -Wall -pg -g")
 
-find_library(LIBAIO NAMES aio)
+find_library(LIBAIO_LIB NAMES aio)
 
 INCLUDE_DIRECTORIES(. ${JNI_INCLUDE_DIRS})
 
@@ -46,7 +46,7 @@ ADD_CUSTOM_COMMAND(
 
 ADD_LIBRARY(artemis-native SHARED org_apache_activemq_artemis_jlibaio_LibaioContext.c org_apache_activemq_artemis_jlibaio_LibaioContext.h exception_helper.h)
 
-target_link_libraries(artemis-native aio)
+target_link_libraries(artemis-native ${LIBAIO_LIB})
 
 set_target_properties(artemis-native PROPERTIES
          LIBRARY_OUTPUT_DIRECTORY ../../../bin)
