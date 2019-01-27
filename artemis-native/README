@@ -6,9 +6,10 @@ DEPENDENCIES
 Make sure you install these packages:
 
 - G++ (yum install gcc-c++ or aptitude install g++)
-- Gcc (yum insall gcc or aptitude install gcc)
+- Gcc (yum install gcc or aptitude install gcc)
 - JDK (full JDK)
 
+For cross-compilation, the 32-bits version of the aforementioned packages should be installed as well.
 
 LIBAIO INFORMATION
 
@@ -47,6 +48,13 @@ Passing additional options to the compiler:
 
 Compiling with debug options:
 ```cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_VERBOSE_MAKEFILE=On .```
+
+Cross-compilation:
+```cmake -DCMAKE_VERBOSE_MAKEFILE=On -DCMAKE_USER_C_FLAGS="-m32" -DARTEMIS_CROSS_COMPILE=On -DARTEMIS_CROSS_COMPILE_ROOT_PATH=/usr/lib .```
+
+Cross-compilation with debugging symbols:
+```cmake -DCMAKE_VERBOSE_MAKEFILE=On -DCMAKE_USER_C_FLAGS="-m32" -DARTEMIS_CROSS_COMPILE=On -DARTEMIS_CROSS_COMPILE_ROOT_PATH=/usr/lib .```
+
 
 DOCUMENTATION
 
