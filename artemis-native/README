@@ -40,6 +40,13 @@ COMPILED FILE
 The produced file will be under the ./target/nar (example: ./target/nar/artemis-native-1.0.0-amd64-Linux-gpp-jni/lib/amd64-Linux-gpp/jni/libartemis-native-1.0.0.so)
 and you will have to rename it manually under ./bin following the appropriate pattern.
 
+ADVANCED COMPILATION METHODS
+
+Passing additional options to the compiler:
+```cmake -DCMAKE_USER_C_FLAGS="-fomit-frame-pointer" -DCMAKE_VERBOSE_MAKEFILE=On .```
+
+Compiling with debug options:
+```cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_VERBOSE_MAKEFILE=On .```
 
 DOCUMENTATION
 
