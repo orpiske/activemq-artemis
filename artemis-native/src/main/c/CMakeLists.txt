@@ -28,11 +28,10 @@ if (JNI_FOUND)
     message (STATUS "JNI_LIBRARIES=${JNI_LIBRARIES}")
 endif()
 
-# you may want to remove this next line for debugging
-# -O3 would make inline debug hard
-#ADD_DEFINITIONS("-O3 -Wall -z execstack")
-ADD_DEFINITIONS("-O3 -Wall")
-#ADD_DEFINITIONS("-fdump-tree-all -Wall -pg -g")
+# You may want to adjust this next line for debugging. The -O3 is removed by default, since it would make debugging
+# harder. Nonetheless, it can still be added by passing CMAKE_USER_C_FLAGS
+set(CMAKE_C_FLAGS_DEBUG "-Wall -z execstack -fdump-tree-all -Wall -pg -g ${CMAKE_USER_C_FLAGS}")
+set(CMAKE_C_FLAGS "-O3 -Wall ${CMAKE_USER_C_FLAGS}")
 
 find_library(LIBAIO_LIB NAMES aio)
 
