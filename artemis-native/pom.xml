@@ -117,6 +117,24 @@
                      </resources>
                   </configuration>
                </execution>
+               <execution>
+                  <id>copy-resources-ppc64le</id>
+                  <phase>validate</phase>
+                  <goals>
+                     <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${basedir}/target/output/lib/linux-ppc64le/</outputDirectory>
+                     <resources>
+                        <resource>
+                           <directory>bin/</directory>
+                           <includes>
+                              <include>libartemis-native-ppc64le.so</include>
+                           </includes>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
             </executions>
          </plugin>
       </plugins>
