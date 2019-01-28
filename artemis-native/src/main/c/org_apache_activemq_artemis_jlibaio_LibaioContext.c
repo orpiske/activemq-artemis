@@ -35,6 +35,7 @@
 #include <limits.h>
 #include "org_apache_activemq_artemis_jlibaio_LibaioContext.h"
 #include "exception_helper.h"
+#include "support.h"
 
 struct io_control {
     io_context_t ioContext;
@@ -60,11 +61,7 @@ struct io_control {
 //These should be used to check if the user_io_getevents is supported, but almost every modern kernel support it
 #define AIO_RING_MAGIC	0xa10a10a1
 #define AIO_RING_INCOMPAT_FEATURES	0
-//memory order relaxed/acquire/release/seq_cst x86_64 fences implementations
-#define mem_barrier() __asm__ __volatile__ ("":::"memory")
-#define read_barrier()	__asm__ __volatile__("lfence":::"memory")
-#define store_barrier()	__asm__ __volatile__("sfence":::"memory")
-#define full_barrier()	__asm__ __volatile__("mfence":::"memory")
+
 
 struct aio_ring {
 	unsigned	id;	/* kernel internal index number */
