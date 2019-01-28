@@ -42,6 +42,10 @@ endif()
 set(ARTEMIS_CROSS_COMPILE OFF CACHE BOOL "Cross-compile the native library")
 
 if (ARTEMIS_CROSS_COMPILE)
+    if (CMAKE_SIZEOF_VOID_P EQUAL 4)
+        message(FATAL_ERROR "Cannot cross-compile to 32-bit architecture in a 32-bit architecture")
+    endif()
+
     message(STATUS "Using cross-compilation")
     set(ARTEMIS_CROSS_COMPILE_ROOT_PATH /usr/lib)
     set(ARTEMIS_LIB_NAME artemis-native-32)
