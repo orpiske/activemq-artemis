@@ -34,9 +34,15 @@ set(CMAKE_C_FLAGS_DEBUG "-Wall -z execstack -fdump-tree-all -Wall -pg -g ${CMAKE
 set(CMAKE_C_FLAGS "-O3 -Wall ${CMAKE_USER_C_FLAGS}")
 
 
-set(ARTEMIS_LIB_NAME artemis-native-64)
-if (CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(ARTEMIS_LIB_NAME artemis-native-32)
+if (CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "ppc64le") 
+	set(ARTEMIS_LIB_NAME artemis-native-ppc64le)
+else()
+	message(STATUS "Building for ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+
+	set(ARTEMIS_LIB_NAME artemis-native-64)
+	if (CMAKE_SIZEOF_VOID_P EQUAL 4)
+    		set(ARTEMIS_LIB_NAME artemis-native-32)
+	endif()
 endif()
 
 set(ARTEMIS_CROSS_COMPILE OFF CACHE BOOL "Cross-compile the native library")

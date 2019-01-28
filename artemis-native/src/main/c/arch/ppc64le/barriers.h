@@ -15,21 +15,22 @@
  * limitations under the License.
  */
 
-#ifndef ARTEMIS_NATIVE_SUPPORT_H
-#define ARTEMIS_NATIVE_SUPPORT_H
+#ifndef ARTEMIS_NATIVE_BARRIERS_H
+#define ARTEMIS_NATIVE_BARRIERS_H
 
-#if (defined __x86_64__)
-	#include "arch/x86_64/barriers.h"
+
+/**
+ * Ref: https://www.ibm.com/developerworks/systems/articles/powerpc.html
+ */
+#ifdef __powerpc64__
+#define read_barrier()	__asm__ __volatile__ ("lwsync" : : : "memory")
 #else
-	#if (defined __i386__)
-		#include "arch/i386/barriers.h"
-	#else
-		#if (defined __powerpc64__) 
-			#include "arch/ppc64le/barriers.h"
-		#else
-			#error The code cannot be compile on this system
-		#endif
-	#endif
+#define read_barrier()	__asm__ __volatile__ ("sync" : : : "memory")
 #endif
 
-#endif //ARTEMIS_NATIVE_SUPPORT_H
+#define write_barrier() __asm__ __volatile__ ("lwsync" : : : "memory")
+
+#define mem_barrier() __asm__ __volatile__ ("lwsync" : : : "memory")
+#define store_barrier()	__asm__ __volatile__("lwsync" : : : "memory")
+
+#endif //ARTEMIS_NATIVE_BARRIERS_H

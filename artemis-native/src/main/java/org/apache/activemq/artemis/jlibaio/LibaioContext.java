@@ -78,7 +78,7 @@ public class LibaioContext<Callback extends SubmitInfo> implements Closeable {
    }
 
    static {
-      String[] libraries = new String[]{"artemis-native-64", "artemis-native-32"};
+      String[] libraries = new String[]{"artemis-native-64", "artemis-native-32", "artemis-native-ppc64le"};
 
       for (String library : libraries) {
          if (loadLibrary(library)) {
