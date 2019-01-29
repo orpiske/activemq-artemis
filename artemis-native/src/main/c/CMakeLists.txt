@@ -30,8 +30,10 @@ endif()
 
 # You may want to adjust this next line for debugging. The -O3 is removed by default, since it would make debugging
 # harder. Nonetheless, it can still be added by passing CMAKE_USER_C_FLAGS
-set(CMAKE_C_FLAGS_DEBUG "-Wall -z execstack -fdump-tree-all -Wall -pg -g ${CMAKE_USER_C_FLAGS}")
-set(CMAKE_C_FLAGS "-O3 -Wall ${CMAKE_USER_C_FLAGS}")
+# Also note that define the C99 as the minimum supported standard so the code can be compiled with older GCC versions
+# (circa 4.4)
+set(CMAKE_C_FLAGS_DEBUG "-Wall -std=c99 -z execstack -fdump-tree-all -Wall -pg -g ${CMAKE_USER_C_FLAGS}")
+set(CMAKE_C_FLAGS "-O3 -std=c99 -Wall ${CMAKE_USER_C_FLAGS}")
 
 
 set(ARTEMIS_LIB_NAME artemis-native-64)
