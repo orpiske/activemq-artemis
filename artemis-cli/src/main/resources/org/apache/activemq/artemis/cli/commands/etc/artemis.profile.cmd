@@ -20,6 +20,7 @@ set ARTEMIS_HOME="${artemis.home}"
 set ARTEMIS_INSTANCE="${artemis.instance}"
 set ARTEMIS_DATA_DIR="${artemis.instance.data}"
 set ARTEMIS_ETC_DIR="${artemis.instance.etc}"
+set ARTEMIS_TMP_DIR="${artemis.instance.tmp}"
 
 
 rem The logging config will need an URI

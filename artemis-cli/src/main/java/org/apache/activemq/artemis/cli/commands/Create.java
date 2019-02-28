@@ -164,6 +164,9 @@ public class Create extends InputAbstract {
    @Option(name = "--etc", description = "Directory where ActiveMQ configuration is located. Paths can be absolute or relative to artemis.instance directory ('etc' by default)")
    private String etc = "etc";
 
+   @Option(name = "--tmp", description = "Directory where ActiveMQ temporary data is located. Paths can be absolute or relative to artemis.instance directory ('tmp' by default)")
+   private String tmp = "tmp";
+
    @Option(name = "--clustered", description = "Enable clustering")
    private boolean clustered = false;
 
@@ -400,6 +403,14 @@ public class Create extends InputAbstract {
 
    public void setEtc(String etc) {
       this.etc = etc;
+   }
+
+   public String getTmp() {
+      return tmp;
+   }
+
+   public void setTmp(String tmp) {
+      this.tmp = tmp;
    }
 
    private String getClusterUser() {
@@ -669,6 +680,9 @@ public class Create extends InputAbstract {
       }
       filters.put("${artemis.home}", path(getHome().toString()));
       filters.put("${artemis.instance}", path(directory));
+
+
+
       filters.put("${artemis.instance.uri}", directory.toURI().toString());
       filters.put("${artemis.instance.uri.windows}", directory.toURI().toString().replaceAll("%", "%%"));
       filters.put("${artemis.instance.name}", directory.getName());
@@ -680,10 +694,12 @@ public class Create extends InputAbstract {
       filters.put("${artemis.instance.etc.uri.windows}", etcFolder.toURI().toString().replaceAll("%", "%%"));
       filters.put("${artemis.instance.etc}", path(etcFolder));
       new File(directory, "log").mkdirs();
-      new File(directory, "tmp").mkdirs();
       new File(directory, "lib").mkdirs();
       File dataFolder = createDirectory(data, directory);
       filters.put("${artemis.instance.data}", path(dataFolder));
+
+      File tmpFolder = createDirectory(tmp, directory);
+      filters.put("${artemis.instance.tmp}", path(tmpFolder));
 
       filters.put("${logmanager}", getLogManager());
 

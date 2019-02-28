@@ -115,7 +115,7 @@ exec "$JAVACMD" \
     -Dartemis.home="$ARTEMIS_HOME" \
     -Dartemis.instance="$ARTEMIS_INSTANCE" \
     -Djava.library.path="$ARTEMIS_HOME/bin/lib/linux-$(uname -m)" \
-    -Djava.io.tmpdir="$ARTEMIS_INSTANCE/tmp" \
+    -Djava.io.tmpdir="$ARTEMIS_TMP_DIR" \
     -Ddata.dir="$ARTEMIS_DATA_DIR" \
     -Dartemis.instance.etc="$ARTEMIS_INSTANCE_ETC" \
     -Djava.util.logging.manager="$ARTEMIS_LOG_MANAGER" \
